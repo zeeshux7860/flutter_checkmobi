@@ -1,0 +1,1 @@
+/home/zeeshu/Desktop/package/flutter_checkmobi/example/build/app/intermediates/cxx/RelWithDebInfo/p6n4i3t2/obj/x86

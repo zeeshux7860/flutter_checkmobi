@@ -1,0 +1,25 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.zee.flutter_checkmobi">
+    <application>
+        <activity android:name=".ui.NumberInputActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <!-- Add any necessary intent-filters if required -->
+        </activity>
+
+        <!-- Registering the BroadcastReceiver for CallListener -->
+        <receiver android:name=".system.listeners.CallListener"
+            android:enabled="true"
+            android:exported="false">
+            <!-- Filter for receiving outgoing and incoming calls -->
+            <intent-filter>
+                <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Your other activities and components -->
+        <activity android:name=".ui.VerificationBaseActivity">
+            <!-- Configuration for your activity -->
+        </activity>
+
+    </application>
+</manifest>

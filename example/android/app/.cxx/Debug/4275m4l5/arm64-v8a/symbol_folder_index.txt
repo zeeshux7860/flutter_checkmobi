@@ -1,0 +1,1 @@
+/home/zeeshu/Desktop/package/flutter_checkmobi/example/build/app/intermediates/cxx/Debug/4275m4l5/obj/arm64-v8a
