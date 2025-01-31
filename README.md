@@ -162,8 +162,7 @@ dataRetrive.listenForData(
 
 ---
 
-Let me know if you need further modifications or additional details!
 
-This documentation will guide users through the steps needed to set up and utilize the `flutter_checkmobi` plugin for phone number verification in their Flutter applications. Let me know if you need any further adjustments!
+This documentation will guide users through the steps needed to set up and utilize the `flutter_checkmobi` plugin for phone number verification in their Flutter applications.
 
 
