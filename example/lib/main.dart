@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_checkmobi/flutter_checkmobi.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String _platformVersion = 'Unknown';
   final dataRetrive = FlutterCheckmobi();
   // DataReceiver dataRetrive = DataReceiver();
   @override
@@ -48,6 +48,9 @@ class _HomePageState extends State<HomePage> {
       onData: (val) {},
       onError: (val) {
         print(val);
+        Fluttertoast.showToast(
+          msg: val,
+        );
       },
       onnVerifyPin: (val) {},
     );
@@ -55,12 +58,13 @@ class _HomePageState extends State<HomePage> {
     // initPlatformState();
   }
 
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController countryCodeController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        dataRetrive.setApiKey("3205B0AC-A58E-47CE-8912-4F70F7C82938");
-      }),
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
       appBar: AppBar(
         title: const Text('Plugin example app'),
       ),
@@ -69,86 +73,60 @@ class _HomePageState extends State<HomePage> {
           TextButton(
               onPressed: () async {
                 try {
+                  var isSaved = await dataRetrive
+                      .setApiKey("3205B0AC-A58E-47CE-8912-4F70F7C82938");
+                  print(isSaved);
+                } catch (e) {
+                  print(e.toString());
+                }
+              },
+              child: Text("Set Api Key")),
+          TextField(
+            controller: countryCodeController,
+            decoration: InputDecoration(
+              labelText: 'Enter Country Code',
+              hintText: 'e.g., 91',
+            ),
+            keyboardType: TextInputType.number,
+          ),
+          SizedBox(height: 16),
+          TextField(
+            controller: phoneController,
+            decoration: InputDecoration(
+              labelText: 'Enter Phone Number',
+              hintText: 'e.g., 1234567890',
+            ),
+            keyboardType: TextInputType.phone,
+          ),
+          TextButton(
+              onPressed: () async {
+                try {
                   var res = await dataRetrive.createMissedCall(
-                      countryCode: "91", phoneNumber: "7003113356");
+                      countryCode: countryCodeController.text,
+                      phoneNumber: phoneController.text);
                   print(res);
                 } catch (e) {
                   print(e.toString());
                 }
               },
-              child: Text("data")),
-          Center(
-            child: Text('Running on: $_platformVersion\n'),
-          ),
+              child: Text("Verify Now")),
         ],
       ),
     );
   }
 }
 
-// class DataReceiver {
-//   static const MethodChannel _channel = MethodChannel('flutter_checkmobi');
-
-//   // Method to listen for data from Java
-//   Future<void> listenForData() async {
-//     _channel.setMethodCallHandler((MethodCall call) async {
-//       if (call.method == 'receiveData') {
-//         // Handle data received from Java
-//         String data = call.arguments;
-//         print("Data received from Java: $data");
-//         // Do something with the data
-//       }
-//       if (call.method == 'error') {
-//         // Handle data received from Java
-//         String data = call.arguments;
-//         print("Data received from Java: $data");
-//         // Do something with the data
-//       }
-//       if (call.method == 'sendIdORPin') {
-//         // Handle data received from Java
-//         String data = call.arguments;
-//         print("Data received from Java: $data");
-//         // Do something with the data
-//       }
-//       if (call.method == 'verifiedUser') {
-//         // Handle data received from Java
-//         String data = call.arguments;
-//         print("Data received from Java: $data");
-//         // Do something with the data
-//       }
-//     });
-//   }
-
-//   // Optional: Method to call Java method
-//   Future<void> sendDataToJava(String data) async {
-//     try {
-//       await _channel.invokeMethod('sendData', {'data': data});
-//     } on PlatformException {
-//       rethrow;
-//     }
-//   }
-
-//   // Optional: Method to call Java method
-//   Future<void> createMissedCall(
-//       {required String countryCode, required String phoneNumber}) async {
-//     try {
-//       await _channel.invokeMethod('callIInitialize',
-//           {'countryCode': countryCode, 'phoneNumber': phoneNumber});
-//     } on PlatformException catch (e) {
-//       rethrow;
-//     }
-//   }
-// }
-
 class VerificationScreen extends StatelessWidget {
+  const VerificationScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           leading: BackButton(
             onPressed: () {
-              Navigator.pop(context);
-              Navigator.pop(context);
+              SystemNavigator.pop();
+              // Navigator.pop(context);
             },
           ),
           title: Text("Checkmobi Verification")),
