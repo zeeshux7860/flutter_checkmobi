@@ -25,7 +25,7 @@ class MethodChannelFlutterCheckmobi extends FlutterCheckmobiPlatform {
   @override
   Future<String?> createMissedCall(
       {required String countryCode, required String phoneNumber}) async {
-    await methodChannel.invokeMethod('callIInitialize',
+    return await methodChannel.invokeMethod('callIInitialize',
         {'countryCode': countryCode, 'phoneNumber': phoneNumber});
   }
 
