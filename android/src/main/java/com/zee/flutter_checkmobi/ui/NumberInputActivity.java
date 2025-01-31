@@ -88,6 +88,9 @@ System.out.print("------------------------aaa");
             }
         } else {
             Toast.makeText(myContext, "No more validation methods", Toast.LENGTH_SHORT).show();
+
+            setResult(RESULT_CANCELED);  // Set result as failure
+            finish();
         }
     }
 

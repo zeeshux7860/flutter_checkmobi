@@ -1,5 +1,6 @@
 package com.zee.flutter_checkmobi.system.listeners;
 
+import com.zee.flutter_checkmobi.FlutterCheckmobiPlugin;
 import com.zee.flutter_checkmobi.model.LastValidation;
 import com.zee.flutter_checkmobi.network.response.CheckNumberResponse;
 import com.zee.flutter_checkmobi.storage.StorageController;
@@ -10,6 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CallListener extends BroadcastReceiver {
     
@@ -69,17 +73,27 @@ public class CallListener extends BroadcastReceiver {
         lastState = state;
     }
     
-    private void verifyIncomingCall(final Context context) {
+    private void verifyIncomingCall(final Context context)  {
         LastValidation lastValidation = StorageController.getInstance().getLatestLastValidation();
 
         if (lastValidation != null && lastValidation.getValidationType().equals(CheckNumberResponse.ValidationMethod.REVERSE_CLI) && dialedNumber != null) {
-
             Intent intent = new Intent(CALL_TO_VERIFY);
             intent.putExtra(ValidationController.PIN_EXTRA, dialedNumber.substring(dialedNumber.length() - 4));
             intent.putExtra(ValidationController.ID_EXTRA, lastValidation.getValidationResponse().getId());
 
-            context.sendBroadcast(intent);
+            JSONObject data = new JSONObject();
+            try {
+                data.put(ValidationController.PIN_EXTRA, dialedNumber.substring(dialedNumber.length() - 4));
+                data.put(ValidationController.ID_EXTRA, lastValidation.getValidationResponse().getId());
+                String encodedJson = data.toString();
+                FlutterCheckmobiPlugin.sendDataToFlutter(encodedJson);
+            } catch (JSONException e) {
+                throw new RuntimeException(e);
+            }
 
+
+
+            context.sendBroadcast(intent);
         }
     }
 

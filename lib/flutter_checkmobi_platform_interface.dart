@@ -30,4 +30,26 @@ abstract class FlutterCheckmobiPlatform extends PlatformInterface {
   Future<String?> reciver() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<String?> createMissedCall(
+      {required String countryCode, required String phoneNumber}) {
+    throw UnimplementedError('createMissedCall() has not been implemented.');
+  }
+
+  Future<String?> chechUser() {
+    throw UnimplementedError('checkuser() has not been implemented.');
+  }
+
+  Future<void> listenForData({
+    required Function(String val) onError,
+    required Function(String val) onnVerifyPin,
+    required Function(String val) onComplete,
+    required Function(String val) onData,
+  }) {
+    throw UnimplementedError('listenForData() has not been implemented.');
+  }
+
+  Future<String?> setApiKey(String key) {
+    throw UnimplementedError('setApiKey() has not been implemented.');
+  }
 }

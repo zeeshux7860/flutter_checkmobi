@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import io.flutter.embedding.android.FlutterFragment;
+
 public class CheckmobiBaseActivity extends AppCompatActivity {
 
     public static final String EXTRA_CUSTOM_THEME = "checkmobi_extra_custom_theme";
@@ -22,6 +24,16 @@ public class CheckmobiBaseActivity extends AppCompatActivity {
 //            }
 //        }
 //        setTheme(theme);
+
+        // ✅ FlutterFragment ko load karo
+        FlutterFragment flutterFragment = FlutterFragment.withNewEngine()
+                .initialRoute("/verification_screen")  // ✅ Flutter ke UI ka route
+                .build();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(android.R.id.content, flutterFragment)  // ✅ Checkmobi ka UI hata ke Flutter render karo
+                .commit();
     }
 
     protected void startActivityForResultWithExtras(Intent intent, int requestCode) {
@@ -29,6 +41,7 @@ public class CheckmobiBaseActivity extends AppCompatActivity {
 
         startActivityForResult(addExtras(intent), requestCode);
     }
+
 
     protected void startActivityWithExtras(Intent intent) {
         startActivity(addExtras(intent));

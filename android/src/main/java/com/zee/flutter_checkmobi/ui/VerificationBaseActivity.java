@@ -6,6 +6,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import com.zee.flutter_checkmobi.FlutterCheckmobiPlugin;
 import com.zee.flutter_checkmobi.model.LastValidation;
 import com.zee.flutter_checkmobi.network.response.CheckNumberResponse;
 import com.zee.flutter_checkmobi.storage.StorageController;
@@ -37,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public abstract class VerificationBaseActivity extends FlutterActivity {
+public abstract class VerificationBaseActivity extends CheckmobiBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,14 +79,15 @@ public abstract class VerificationBaseActivity extends FlutterActivity {
                         handleSuccessfulVerification();
                         System.out.println("Verification Complete for pin: " + pin);
                     } else {
-                        showErrorDialog(R.string.incorrect_pin);
+//                        showErrorDialog(R.string.incorrect_pin);
                     }
                 }
 
                 @Override
                 public void onFailure(Call<VerificationResponse> call, Throwable t) {
                     hideLoading();
-                    showErrorDialog(R.string.incorrect_pin);
+//                    showErrorDialog(R.string.incorrect_pin);
+                    FlutterCheckmobiPlugin.sendError(String.valueOf(R.string.incorrect_pin));
                     System.out.println(t.getMessage());
                 }
             });
@@ -103,6 +105,7 @@ public abstract class VerificationBaseActivity extends FlutterActivity {
     protected void onDestroy() {
         android.util.Log.d("UNREGESTERTED", "onDestroy: done");
         unregisterBroadcastReceiver();
+
         super.onDestroy();
     }
 
