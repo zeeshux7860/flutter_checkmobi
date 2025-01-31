@@ -1,8 +1,5 @@
-Okay! Here’s how you can create the documentation for your `flutter_checkmobi` plugin based on the code you provided.
 
----
-
-# flutter_checkmobi Plugin Documentation
+# flutter checkmobi Plugin Documentation
 
 `flutter_checkmobi` is a Flutter plugin for integrating Checkmobi SDK for phone number verification in your Flutter application. This plugin provides a method to start the phone number verification process using Checkmobi's verification service.
 
