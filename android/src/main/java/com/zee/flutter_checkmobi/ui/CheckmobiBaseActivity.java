@@ -1,57 +1,22 @@
 package com.zee.flutter_checkmobi.ui;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
 import io.flutter.embedding.android.FlutterFragment;
 
 public class CheckmobiBaseActivity extends AppCompatActivity {
-
-    public static final String EXTRA_CUSTOM_THEME = "checkmobi_extra_custom_theme";
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle extras = getIntent().getExtras();
-//        int theme = R.style.CheckmobiUI;
-//        if (extras != null) {
-//            int customTheme = extras.getInt(EXTRA_CUSTOM_THEME, -1);
-//            if (customTheme != -1) {
-//                theme = customTheme;
-//            }
-//        }
-//        setTheme(theme);
 
-        // ✅ FlutterFragment ko load karo
-        FlutterFragment flutterFragment = FlutterFragment.withNewEngine()
-                .initialRoute("/verification_screen")  // ✅ Flutter ke UI ka route
+        // Cached engine ko use kar rahe hain
+        FlutterFragment flutterFragment = FlutterFragment.withCachedEngine("checkmobi_engine")
                 .build();
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(android.R.id.content, flutterFragment)  // ✅ Checkmobi ka UI hata ke Flutter render karo
+                .replace(android.R.id.content, flutterFragment)
                 .commit();
-    }
-
-    protected void startActivityForResultWithExtras(Intent intent, int requestCode) {
-
-
-        startActivityForResult(addExtras(intent), requestCode);
-    }
-
-
-    protected void startActivityWithExtras(Intent intent) {
-        startActivity(addExtras(intent));
-    }
-
-    private Intent addExtras(Intent intent) {
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            intent.putExtras(extras);
-        }
-        return intent;
     }
 }

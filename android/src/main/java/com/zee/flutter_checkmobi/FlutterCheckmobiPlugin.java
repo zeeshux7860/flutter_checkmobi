@@ -181,8 +181,8 @@ public class FlutterCheckmobiPlugin implements FlutterPlugin, MethodCallHandler,
         String encodedJson = data.toString();
 
 
-  activity.
-              finish();
+//  activity.
+//              finish();
       result.success(encodedJson);
 //      return   verifiedUser(encodedJson);
     }else{
@@ -253,7 +253,7 @@ public class FlutterCheckmobiPlugin implements FlutterPlugin, MethodCallHandler,
           checkIfNumberAlreadyVerified();
         } else {
           sendError("user canceled verification message");
-            Toast.makeText(activity, "user_canceled_verification_message", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(activity, "user_canceled_verification_message", Toast.LENGTH_SHORT).show();
         }
         //
 //      if (resultCode == Activity.RESULT_OK && data != null) {

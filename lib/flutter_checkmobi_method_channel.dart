@@ -60,7 +60,7 @@ class MethodChannelFlutterCheckmobi extends FlutterCheckmobiPlatform {
       if (call.method == 'verifiedUser') {
         // Handle data received from Java
         String data = call.arguments;
-        onComplete("Data received from Java: $data");
+        onComplete(data);
         // Do something with the data
       }
     });
