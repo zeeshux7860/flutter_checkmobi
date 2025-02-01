@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/Debug/534v732l/armeabi-v7a",
+  "command": "/Users/zeeshux/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi28 --sysroot=/Users/zeeshux/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -Dnative_lib_EXPORTS -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fno-limit-debug-info  -fPIC -o CMakeFiles/native-lib.dir/native-lib.cpp.o -c /Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/src/main/cpp/native-lib.cpp",
+  "file": "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/src/main/cpp/native-lib.cpp"
+}
+]
