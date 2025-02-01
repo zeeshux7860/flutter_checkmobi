@@ -1,6 +1,6 @@
 name: flutter_checkmobi
 description: "A Flutter plugin for phone number verification using Checkmobi's missed call-based verification system."
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/zeeshux7860/flutter_checkmobi
 
 environment:
