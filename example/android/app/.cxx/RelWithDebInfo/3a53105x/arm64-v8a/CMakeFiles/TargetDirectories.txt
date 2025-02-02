@@ -1,0 +1,3 @@
+/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/RelWithDebInfo/3a53105x/arm64-v8a/CMakeFiles/native-lib.dir
+/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/RelWithDebInfo/3a53105x/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/RelWithDebInfo/3a53105x/arm64-v8a/CMakeFiles/rebuild_cache.dir

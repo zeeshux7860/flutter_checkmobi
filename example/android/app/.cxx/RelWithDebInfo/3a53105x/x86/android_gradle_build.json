@@ -1,0 +1,38 @@
+{
+  "buildFiles": [
+    "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/zeeshux/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/RelWithDebInfo/3a53105x/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/zeeshux/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/RelWithDebInfo/3a53105x/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "native-lib::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "native-lib",
+      "output": "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/build/app/intermediates/cxx/RelWithDebInfo/3a53105x/obj/x86/libnative-lib.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/Users/zeeshux/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/Users/zeeshux/Library/Android/sdk/ndk/26.1.10909125/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

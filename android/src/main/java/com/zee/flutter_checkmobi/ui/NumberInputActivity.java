@@ -46,18 +46,54 @@ public class NumberInputActivity extends VerificationBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Retrieve the data from Intent
-         savedCountryCode = getIntent().getStringExtra("savedCountryCode");
-         number = getIntent().getStringExtra("number");
+//
+        Log.d("RUNNING", "onCreate: runing");
+//        // Call the non-static initialize() method from the non-static context (onCreate)
+        try {
+            initlize();  // Now it's calling the non-static method
+        } catch (Exception e) {
+            Log.e("Initialization Error", "Error during initialization", e);
+        }
+////        // Retrieve the data from Intent
+////        savedCountryCode = getIntent().getStringExtra("savedCountryCode");
+////        number = getIntent().getStringExtra("number");
+////
+////        Log.d("COUNTRYCODE", "onCreate: "+savedCountryCode);
+////        Log.d("number", "onCreate: "+number);
+////
+////        registerReceivers();
+////
+////        checkAndFormatNumber();
+//
+//    }
 
-        Log.d("COUNTRYCODE", "onCreate: "+savedCountryCode);
-        Log.d("number", "onCreate: "+number);
-
-        registerReceivers();
-
-        checkAndFormatNumber();
-
+//    static {
+//        try {
+//            initlize();
+//        } catch (Exception e) {
+//            Log.e("Static Initialization", "Error during static initialization", e);
+//        }
     }
+
+    private   void   initlize() throws Exception{
+        try {
+
+            // Retrieve the data from Intent
+            savedCountryCode = getIntent().getStringExtra("savedCountryCode");
+            number = getIntent().getStringExtra("number");
+
+            Log.d("COUNTRYCODE", "onCreate: " + savedCountryCode);
+            Log.d("number", "onCreate: " + number);
+
+            registerReceivers();
+
+            checkAndFormatNumber();
+        }
+        catch (Exception e) {
+            throw new Exception("Error initializing CheckmobiSdk", e);
+        }
+    }
+
 
     @Override
     protected boolean listenForSms() {
@@ -78,7 +114,7 @@ public class NumberInputActivity extends VerificationBaseActivity {
 
         final CheckNumberResponse.ValidationMethod validationMethod = ValidationController.getFirstAvailableValidationMethod(myContext, fullNumberUsed);
         Log.d("NOTWORKING", "requestFirstValidation: runing");
-System.out.print("------------------------aaa");
+//System.out.print("------------------------aaa");
         if (validationMethod != null) {
             if (validationMethod.getType().equals(CheckNumberResponse.ValidationMethod.REVERSE_CLI) && (getGrantForPermission(android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED || getGrantForPermission(Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED)) {
                 handleReverseCliFailed();
@@ -114,18 +150,30 @@ System.out.print("------------------------aaa");
         } else if (TextUtils.isEmpty(number)) {
             showErrorDialog(com.zee.flutter_checkmobi.R.string.number_empty_error);
         } else {
-            CountryCode countryCode = new CountryCode("+" + savedCountryCode,"", ""); // Output: CountryCode object for +91
+
+            CountryCode countryCode = new CountryCode(  savedCountryCode,"", ""); // Output: CountryCode object for +91
             showLoading();
             StorageController.getInstance().updateLastUsedNumber(this, number);
+            Log.d("RUNNING", "updateLastUsedNumber: runing");
+
             PhoneNumberFormatter.checkAndFormatNumber(countryCode, number, new Callback<CheckNumberResponse>() {
+
                 @Override
                 public void onResponse(Call<CheckNumberResponse> call, Response<CheckNumberResponse> response) {
+                    Log.d("RUNNING", "CheckNumberResponse: "+response.body());
+
                     hideLoading();
                     if(response.isSuccessful()) {
+                        Log.d("RESPONSE_SUCCESS", "Data: " + response.body().toString());
                         // VALIDATION API
                         showValidNumberVerificationDialog(response.body());
                     } else {
-
+                        Log.e("RESPONSE_ERROR", "Error Code: " + response.code() + " | Message: " + response.message());
+                        try {
+                            Log.e("RESPONSE_ERROR_BODY", "Body: " + response.errorBody().string());
+                        } catch (Exception e) {
+                            Log.e("RESPONSE_ERROR_BODY", "Error parsing error body", e);
+                        }
                         String locallyFormattedPhoneNumber = savedCountryCode + number;
                         Log.d("DEBUG", CheckmobiSdk.getInstance().getApiKey());
                         showInvalidNumberVerificationDialog(CheckNumberResponse.createResponseFromE164Number(locallyFormattedPhoneNumber));
@@ -134,6 +182,7 @@ System.out.print("------------------------aaa");
 
                 @Override
                 public void onFailure(Call<CheckNumberResponse> call, Throwable t) {
+                    Log.e("NETWORK_FAILURE", "Request failed", t);
                     hideLoading();
                     String locallyFormattedPhoneNumber = savedCountryCode + number;
                     Log.d("DEBUG", locallyFormattedPhoneNumber.toString());

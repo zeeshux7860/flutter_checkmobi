@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/src/main/cpp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/zeeshux/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/RelWithDebInfo/3a53105x/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/zeeshux/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/android/app/.cxx/RelWithDebInfo/3a53105x/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "native-lib::@6890427a1f51a3e7e1df": {
+      "artifactName": "native-lib",
+      "abi": "x86_64",
+      "output": "/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/build/app/intermediates/cxx/RelWithDebInfo/3a53105x/obj/x86_64/libnative-lib.so",
+      "runtimeFiles": []
+    }
+  }
+}

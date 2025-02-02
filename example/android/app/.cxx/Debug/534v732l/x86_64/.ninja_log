@@ -1,3 +1,11 @@
 # ninja log v5
 0	333	1738420271940586304	CMakeFiles/native-lib.dir/native-lib.cpp.o	f3bb844278a5fc37
 335	386	1738420271994062425	/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/build/app/intermediates/cxx/Debug/534v732l/obj/x86_64/libnative-lib.so	c5e80b035bcb1acd
+0	5	0	clean	2ad75f20fc159bef
+0	4	0	clean	2ad75f20fc159bef
+2	322	1738504396574677657	CMakeFiles/native-lib.dir/native-lib.cpp.o	f3bb844278a5fc37
+322	384	1738504396636808281	/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/build/app/intermediates/cxx/Debug/534v732l/obj/x86_64/libnative-lib.so	c5e80b035bcb1acd
+0	6	0	clean	2ad75f20fc159bef
+0	4	0	clean	2ad75f20fc159bef
+3	712	1738510228093313887	CMakeFiles/native-lib.dir/native-lib.cpp.o	f3bb844278a5fc37
+712	970	1738510228349215184	/Users/zeeshux/Desktop/dev/flutter_checkmobi/example/build/app/intermediates/cxx/Debug/534v732l/obj/x86_64/libnative-lib.so	c5e80b035bcb1acd

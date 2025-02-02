@@ -3,7 +3,6 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_checkmobi/flutter_checkmobi.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,9 +47,6 @@ class _HomePageState extends State<HomePage> {
       onData: (val) {},
       onError: (val) {
         print(val);
-        Fluttertoast.showToast(
-          msg: val,
-        );
       },
       onnVerifyPin: (val) {},
     );

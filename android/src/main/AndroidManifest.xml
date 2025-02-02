@@ -1,5 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.zee.flutter_checkmobi">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application>
         <activity android:name=".ui.NumberInputActivity"  android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <!-- Add any necessary intent-filters if required -->
