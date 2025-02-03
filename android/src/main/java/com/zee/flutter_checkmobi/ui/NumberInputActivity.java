@@ -224,6 +224,7 @@ public class NumberInputActivity extends VerificationBaseActivity {
         if (permissionList.size() > 0) {
 
             ActivityCompat.requestPermissions(this, permissionList.toArray(new String[permissionList.size()]), PERMISSION_REQUEST_CODE);
+            checkAndFormatNumber();
         } else {
             Log.d("HIT HERE", String.valueOf(fullNumberUsed));
             requestFirstValidation(fullNumberUsed);

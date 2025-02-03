@@ -20,3 +20,12 @@
 ## 0.0.5
 
 * TODO: Bug's fix
+
+
+## 0.0.6
+
+* TODO: Bug's fix
+
+## 0.0.7
+
+* TODO: Bug's fix
